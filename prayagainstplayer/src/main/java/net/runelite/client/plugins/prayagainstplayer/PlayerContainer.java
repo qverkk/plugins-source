@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2018, https://openosrs.com
- * Copyright (c) 2018, Kyle <https://github.com/kyleeld>
+ * Copyright (c) 2019, gazivodag <https://github.com/gazivodag>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -11,7 +10,6 @@
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
- *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -23,26 +21,44 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.menuentryswapperextended.util;
 
-public enum SlayerRingMode
+package net.runelite.client.plugins.prayagainstplayer;
+
+import net.runelite.api.Player;
+
+/**
+ * Contains a player object
+ * When they attacked me
+ * And (in milliseconds) when to expire the overlay around them
+ */
+public class PlayerContainer
 {
-	CHECK("Check"),
-	TELEPORT("Teleport"),
-	MASTER("Master"),
-	PARTNER("Partner"),
-	LOG("Log");
 
-	private final String name;
+	private final Player player;
+	private final long whenTheyAttackedMe;
+	private final int millisToExpireHighlight;
 
-	SlayerRingMode(String name)
+	PlayerContainer(final Player player, final long whenTheyAttackedMe, final int millisToExpireHighlight)
 	{
-		this.name = name;
+		this.player = player;
+		this.whenTheyAttackedMe = whenTheyAttackedMe;
+		this.millisToExpireHighlight = millisToExpireHighlight;
 	}
 
-	@Override
-	public String toString()
+	//getters
+	public Player getPlayer()
 	{
-		return name;
+		return player;
 	}
+
+	long getWhenTheyAttackedMe()
+	{
+		return whenTheyAttackedMe;
+	}
+
+	int getMillisToExpireHighlight()
+	{
+		return millisToExpireHighlight;
+	}
+
 }
